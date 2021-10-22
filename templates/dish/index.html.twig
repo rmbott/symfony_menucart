@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<table class="table table-striped table-dark">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dish in dishes %}
+				<tr>
+					<th scope="row">{{dish.id}}</th>
+					<td>{{dish.name}}</td>
+					<td>{{dish.description}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
