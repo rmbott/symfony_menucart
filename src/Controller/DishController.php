@@ -53,6 +53,10 @@ class DishController extends AbstractController
         $dish = $dr->find($id);
         $em->remove($dish);
         $em->flush();
+
+        //message
+        $this->addFlash('success', 'Dish has been deleted');
+        
         return $this->redirect($this->generateUrl('dish.list'));
     }
 }
