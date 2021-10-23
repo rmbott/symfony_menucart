@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Dish;
+use App\Form\DishType;
 use App\Repository\DishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Validator\Constraints\Form;
+use Symfony\Component\Form\Form as FormForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,13 +28,31 @@ class DishController extends AbstractController
     public function create(Request $request)
     {
         $dish = new Dish();
-        $dish->setName('Pizza');
+        
+        // Form
+        $form = $this->createForm(DishType::class, $dish);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($dish);
+            $em->flush();
 
-        //Entity Manager
+            return $this->redirect($this->generateUrl('dish.add'));
+        }
+
+        return $this->render('dish/add.html.twig', [
+            'addForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(int $id, DishRepository $dr)
+    {
         $em = $this->getDoctrine()->getManager();
-        $em->persist($dish);
+        $dish = $dr->find($id);
+        $em->remove($dish);
         $em->flush();
-
-        return new Response("Dish created");
+        return $this->redirect($this->generateUrl('dish.list'));
     }
 }
