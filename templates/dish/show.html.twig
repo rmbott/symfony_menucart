@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<h2>{{dish.name}}</h2>
+	<p><strong>Description: </strong>{{dish.Description}}</p>
+	<img src="{{ asset('assets/img/dishes/' ~ dish.imageName) }}">
+{% endblock %}

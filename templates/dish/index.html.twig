@@ -19,7 +19,7 @@
 			{% for dish in dishes %}
 				<tr>
 					<th scope="row">{{dish.id}}</th>
-					<td>{{dish.name}}</td>
+					<th><a href="{{ path('dish.show',{id: dish.id}) }}">{{dish.name}}</a></th>
 					<td>{{dish.description}}</td>
 					<th>{{dish.Price}}</th>
 					<th><a href="{{ path('dish.delete',{id: dish.id}) }}">x</a></th>

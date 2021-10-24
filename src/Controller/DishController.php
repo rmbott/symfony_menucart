@@ -60,4 +60,12 @@ class DishController extends AbstractController
         
         return $this->redirect($this->generateUrl('dish.list'));
     }
+
+    #[Route('/show/{id}', name: 'show')]
+    public function show(Dish $dish)
+    {
+        return $this->render('dish/show.html.twig', [
+            'dish' => $dish
+        ]);
+    }
 }
