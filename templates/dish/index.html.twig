@@ -10,6 +10,7 @@
 				<th scope="col">#</th>
 				<th scope="col">Name</th>
 				<th scope="col">Description</th>
+				<th scope="col">Category</th>
 				<th scope="col">Price</th>
 				<th scope="col">Delete</th>
 				<th scope="col"><a href="{{ path('dish.add') }}">Create</a></th>
@@ -21,6 +22,7 @@
 					<th scope="row">{{dish.id}}</th>
 					<th><a href="{{ path('dish.show',{id: dish.id}) }}">{{dish.name}}</a></th>
 					<td>{{dish.description}}</td>
+					<td>{{dish.category}}</td>
 					<th>{{dish.Price}}</th>
 					<th><a href="{{ path('dish.delete',{id: dish.id}) }}">x</a></th>
 					<th></th>
